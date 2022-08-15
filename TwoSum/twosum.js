@@ -4,15 +4,11 @@ You may assume that each input would have exactly one solution, and you may not 
 
 You can return the answer in any order.*/
 
-// slow version
-const nums = [3, 2, 4];
 var twoSum = function (arr, target) {
   for (let i = 0; i < arr.length; i++) {
-    let index = arr.findIndex(
-      (element) => arr.indexOf(element) !== i && element + arr[i] === target
-    );
+    let index = arr.findIndex((element) => element + arr[i] === target);
 
-    if (index !== -1) {
+    if (index !== -1 && index !== i) {
       return [i, index];
     }
   }
