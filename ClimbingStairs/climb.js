@@ -1,14 +1,16 @@
-const c = {}; // Cache Map
+const climbStairs = function (n) {
+  // Initialize for n = 0, and n = 1. There's only 1 way to climb those stairs.
+  const waysToClimb = [1, 1];
 
-var climbStairs = function (n) {
-  // cache
-
-  if (n <= 3) {
-    return n;
+  for (let i = 2; i <= n; i++) {
+    // How to climb i stairs:
+    // - Either climb 1 stair and then climb the rest i-1 stairs X ways.
+    // - Or climb 2 stairs at once and then climb the rest i-2 stairs Y ways.
+    // Total: X + Y ways
+    waysToClimb.push(waysToClimb[i - 1] + waysToClimb[i - 2]);
   }
 
-  c[n] = climbStairs(n - 1) + climbStairs(n - 2); // Here we cache the value for upcoming operations
-  return c[n];
+  return waysToClimb[n];
 };
 
 console.log(climbStairs(5)); //eo 8
